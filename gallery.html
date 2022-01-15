@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Gallery</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500&display=swap" rel="stylesheet">
+
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .gallery {
+        padding: 20px;
+        background-color: #091921;
+    }
+
+    .gallery ul {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+
+    .gallery ul li {
+        list-style: none;
+        font-size: 20px;
+        font-family: "Roboto", serif;
+        background-color: rgb(215, 215, 215);
+        margin: 5px;
+        padding: 8px 20px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        transition: 0.4s linear;
+    }
+
+    .gallery ul li:hover {
+        background-color: #FBBB09;
+    }
+
+    .gallery ul li.active {
+        background-color: rgb(0, 81, 255);
+        color: white;
+    }
+
+    .items-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .items {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 5px;
+    }
+
+    .items img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+
+    .menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2
+}
+
+.toggler {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.hamburger {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.hamburger > div {
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    border-radius: 1.5px;
+    background-color: greenyellow;
+    transition: .4s;
+}
+
+.hamburger > div:before,
+.hamburger > div:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    border-radius: 1.5px;
+    background-color: greenyellow;
+    transition: .4s;
+}
+
+.hamburger > div:before {
+    top: -10px;
+}
+
+.hamburger > div:after {
+    top: 10px;
+}
+
+.toggler:checked + .hamburger > div {
+    transform: rotate(135deg);
+}
+
+.toggler:checked:hover + .hamburger > div {
+    transform: rotate(225deg);
+}
+
+.toggler:checked + .hamburger > div:after,
+.toggler:checked + .hamburger > div:before {
+    transform: rotate(90deg);
+    top: 0;
+}
+
+.toggler:checked ~ .menu
+{
+    visibility: visible;
+}
+
+.toggler:checked ~ .menu >div
+{
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.toggler:checked ~ .menu >div >div
+{
+    opacity: 1;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    visibility: hidden;
+    transition: .6s;
+}
+
+.menu > div {
+    position: absolute;
+    width: 1600px;
+    height: 1600px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-150%) translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    transition: .6s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu >div >div
+{
+    max-width: 90vw;
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+}
+
+.menu >div >div >ul >li
+{
+    list-style: none;
+}
+
+.menu >div >div >ul >li a
+{
+    text-decoration: none;
+    margin: .5rem;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 550;
+    text-transform: uppercase;
+    color: #fff;
+    transition: .3s;
+}
+
+.menu >div >div >ul >li a:hover
+{
+    color: greenyellow;
+}
+
+
+
+</style>
+
+<body>
+
+
+    <header>
+        <div class="menu-container">
+      <input type="checkbox" class="toggler">
+      <div class="hamburger">
+          <div></div>
+      </div>
+      <div class="menu">
+          <div>
+              <div>
+                  <ul>
+                      <li><a href="index.html">About</a></li>
+                      <li><a href="gallery.html">Gellery</a></li>
+                      <li><a href="contactus.html">Contact Us</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  </header>
+
+    <div class="gallery">
+        <ul>
+            <li class="list active" data-filter="all">All</li>
+            <li class="list" data-filter="nature">nature</li>
+            <li class="list" data-filter="waterfall">waterfall</li>
+            <li class="list" data-filter="photo">photo</li>
+        </ul>
+
+        <div class="items-container">
+
+             <div class="items nature">
+                <a href="assets/nature1.jpg">
+                    <img src="assets/nature1.jpg" alt="nature1.jpg">
+                </a>
+            </div>
+
+           
+            <div class="items waterfall">
+                <a href="assets/waterfall1.jpg">
+                    <img src="assets/waterfall1.jpg" alt="waterfall1.jpg">
+                </a>
+            </div>
+
+            <div class="items photo">
+                <a href="assets/photo1.jpg">
+                    <img src="assets/photo1.jpg" alt="photo1.jpg">
+                </a>
+            </div>
+
+            
+
+            <div class="items nature">
+                <a href="assets/nature2.jpg">
+                    <img src="assets/nature2.jpg" alt="nature2.jpg">
+                </a>
+            </div>
+
+          
+
+            <div class="items waterfall">
+                <a href="assets/waterfall2.jpg">
+                    <img src="assets/waterfall2.jpg" alt="waterfall2.jpg">
+                </a>
+            </div>
+
+            <div class="items photo">
+                <a href="assets/photo2.jpg">
+                    <img src="assets/photo2.jpg" alt="photo2.jpg">
+                </a>
+            </div>
+
+            
+
+            <div class="items nature">
+                <a href="assets/nature3.jpg">
+                    <img src="assets/nature3.jpg" alt="nature3.jpg">
+                </a>
+            </div>
+
+           
+
+            <div class="items waterfall">
+                <a href="assets/waterfall3.jpg">
+                    <img src="assets/waterfall3.jpg" alt="waterfall3.jpg">
+                </a>
+            </div>
+
+            <div class="items photo">
+                <a href="assets/photo3.jpg">
+                    <img src="assets/photo3.jpg" alt="photo3.jpg">
+                </a>
+            </div>
+
+            <div class="items nature">
+                <a href="assets/nature4.jpg">
+                    <img src="assets/nature4.jpg" alt="nature4.jpg">
+                </a>
+            </div>
+           
+
+            <div class="items waterfall">
+                <a href="assets/waterfall4.jpg">
+                    <img src="assets/waterfall4.jpg" alt="waterfall4.jpg">
+                </a>
+            </div>
+
+            <div class="items photo">
+                <a href="assets/photo4.jpg">
+                    <img src="assets/photo4.jpg" alt="photo4.jpg">
+                </a>
+            </div>
+
+            <div class="items nature">
+                <a href="assets/nature5.jpg">
+                    <img src="assets/nature5.jpg" alt="nature5.jpg">
+                </a>
+            </div>
+
+            <div class="items waterfall">
+                <a href="assets/waterfall5.jpg">
+                    <img src="assets/waterfall5.jpg" alt="waterfall5.jpg">
+                </a>
+            </div>
+
+
+            <div class="items photo">
+                <a href="assets/photo5.jpg">
+                <img src="assets/photo5.jpg" alt="photo5.jpg">
+            </a>
+            </div>
+
+
+            <div class="items nature">
+                <a href="assets/nature6.jpg">
+                    <img src="assets/nature6.jpg" alt="nature6.jpg">
+                </a>
+            </div>
+
+            <div class="items waterfall">
+                <a href="assets/waterfall6.jpg">
+                    <img src="assets/waterfall6.jpg" alt="waterfall6.jpg">
+                </a>
+            </div>
+
+            <div class="items photo">
+                <a href="assets/photo6.jpg">
+                    <img src="assets/photo6.jpg" alt="photo6.jpg">
+                </a>
+            </div>
+
+            <div class="items nature">
+                <a href="assets/nature7.jpg">
+                    <img src="assets/nature7.jpg" alt="nature7.jpg">
+                </a>
+            </div>
+
+            <div class="items waterfall">
+                <a href="assets/waterfall7.jpg">
+                    <img src="assets/waterfall7.jpg" alt="waterfall7.jpg">
+                </a>
+            </div>
+
+            <div class="items photo">
+                <a href="assets/photo7.jpg">
+                    <img src="assets/photo7.jpg" alt="photo7.jpg">
+                </a>
+            </div>
+
+            <div class="items nature">
+                <a href="assets/nature8.jpg">
+                    <img src="assets/nature8.jpg" alt="nature8.jpg">
+                </a>
+            </div>
+
+            
+            <div class="items waterfall">
+                <a href="assets/waterfall8.jpg">
+                    <img src="assets/waterfall8.jpg" alt="waterfall8.jpg">
+                </a>
+            </div>
+
+            <div class="items photo">
+                <a href="assets/photo8.jpg">
+                    <img src="assets/photo8.jpg" alt="photo8.jpg">
+                </a>
+            </div>
+
+            <div class="items nature">
+                <a href="assets/nature9.jpg">
+                    <img src="assets/nature9.jpg" alt="nature9.jpg">
+                </a>
+            </div>
+
+            
+            <div class="items photo">
+                <a href="assets/photo9.jpg">
+                    <img src="assets/photo9.jpg" alt="photo9.jpg">
+                </a>
+            </div>
+
+            <div class="items nature">
+                <a href="assets/nature10.jpg">
+                    <img src="assets/nature10.jpg" alt="nature10.jpg">
+                </a>
+            </div>
+
+            
+            <div class="items photo">
+                <a href="assets/photo10.jpg">
+                    <img src="assets/photo10.jpg" alt="photo10.jpg">
+                </a>
+            </div>
+           
+        </div>
+    </div>
+
+
+    <!-- JQuery JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Magnific Popup JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $(".list").click(function () {
+
+                let value = $(this).attr("data-filter");
+
+                if (value == "all") {
+                    $(".items").show(1000);
+                }
+                else {
+                    $(".items").not("." + value).hide(1000);
+                    $(".items").filter("." + value).show(1000);
+                }
+
+                $(".list").removeClass("active");
+                $(this).addClass("active");
+            });
+
+
+            $('.items-container').magnificPopup({
+                delegate: 'a', // child items selector, by clicking on it popup will open
+                type: 'image',
+                // other options
+
+                gallery: {
+                    enabled: true, // set to true to enable gallery
+
+                    preload: [0, 2], // read about this option in next Lazy-loading section
+
+                    navigateByImgClick: true,
+
+                    arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>', // markup of an arrow button
+
+                    tPrev: 'Previous (Left arrow key)', // title for left button
+                    tNext: 'Next (Right arrow key)', // title for right button
+                    tCounter: '<span class="mfp-counter">%curr% of %total%</span>' // markup of counter
+                },
+
+                mainClass: 'mfp-with-zoom', // this class is for CSS animation below
+
+                zoom: {
+                    enabled: true, // By default it's false, so don't forget to enable it
+
+                    duration: 300, // duration of the effect, in milliseconds
+                    easing: 'ease-in-out', // CSS transition easing function
+
+                    // The "opener" function should return the element from which popup will be zoomed in
+                    // and to which popup will be scaled down
+                    // By defailt it looks for an image tag:
+                    opener: function (openerElement) {
+                        // openerElement is the element on which popup was initialized, in this case its <a> tag
+                        // you don't need to add "opener" option if this code matches your needs, it's defailt one.
+                        return openerElement.is('img') ? openerElement : openerElement.find('img');
+                    }
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

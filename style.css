@@ -1,0 +1,394 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body
+{
+    scroll-behavior: smooth;
+    overflow: scroll;
+    background: #091921;
+}
+
+
+header
+{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(pic1/banner1.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+
+
+ .menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2
+}
+
+.toggler {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.hamburger {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.hamburger > div {
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    border-radius: 1.5px;
+    background-color: greenyellow;
+    transition: .4s;
+}
+
+.hamburger > div:before,
+.hamburger > div:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    border-radius: 1.5px;
+    background-color: greenyellow;
+    transition: .4s;
+}
+
+.hamburger > div:before {
+    top: -10px;
+}
+
+.hamburger > div:after {
+    top: 10px;
+}
+
+.toggler:checked + .hamburger > div {
+    transform: rotate(135deg);
+}
+
+.toggler:checked:hover + .hamburger > div {
+    transform: rotate(225deg);
+}
+
+.toggler:checked + .hamburger > div:after,
+.toggler:checked + .hamburger > div:before {
+    transform: rotate(90deg);
+    top: 0;
+}
+
+.toggler:checked ~ .menu
+{
+    visibility: visible;
+}
+
+.toggler:checked ~ .menu >div
+{
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.toggler:checked ~ .menu >div >div
+{
+    opacity: 1;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    visibility: hidden;
+    transition: .6s;
+}
+
+.menu > div {
+    position: absolute;
+    width: 1600px;
+    height: 1600px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-150%) translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    transition: .6s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu >div >div
+{
+    max-width: 90vw;
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+}
+
+.menu >div >div >ul >li
+{
+    list-style: none;
+}
+
+.menu >div >div >ul >li a
+{
+    text-decoration: none;
+    margin: .5rem;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 550;
+    text-transform: uppercase;
+    color: #fff;
+    transition: .3s;
+}
+
+.menu >div >div >ul >li a:hover
+{
+    color: greenyellow;
+}
+
+
+
+.icon i
+{
+    font-size: 20px;
+}
+.icon i:hover
+{
+    color: orangered;
+}
+.icon a
+{
+    text-decoration: none;
+    background: white;
+    color: white;
+    padding: 10px 20px;
+    margin-left: 30px;
+    border-radius: 5px;
+}
+
+.text
+{
+    color: whitesmoke;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.text h1
+{
+    font-family: cursive;
+    font-size: 3em;
+    letter-spacing: 10px;
+    margin-left: -50%;
+}
+
+@media screen and (max-width: 700px) 
+{
+    text h1{
+        font-size: 20px;
+        line-height: 10px;
+    }
+}
+
+
+.filter-gallery
+{
+    padding: 100px;
+}
+
+.portfolio-menu
+{
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.portfolio-menu ul li
+{
+    list-style: none;
+    display: inline-block;
+    margin: 20px 0;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: cursive;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.portfolio-menu ul li::after
+{
+    content: '';
+    height: 3px;
+    width: 0%;
+    background-color: white;
+    display: block;
+    transition: .5s ease-in-out;
+}
+
+.portfolio-menu ul li:hover::after
+{
+    content: '';
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    display: block;
+}
+
+
+li.active
+{
+    color: wheat;
+    background: orangered;
+    border-radius: 10px;
+}
+.portfolio-item
+{
+    width: 100%;
+}
+.portfolio-item .item
+{
+    width: 260px;
+    height: 260px;
+    float: right;
+    margin-bottom: 50px;
+    margin-right: 60px;
+    justify-content: center;
+}
+.portfolio-item .item img
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+
+.logo-card
+{
+    text-align: center;
+    padding-top: 50px;
+    width: 50%;
+    margin: auto;
+}
+
+.logo-card img
+{
+     width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
+.logo-card p
+{
+    color: white;
+    margin: 9px 0px;
+    line-height: 2em;
+}
+
+.logo-card h2
+{
+    margin: 20px 0px;
+}
+
+
+.m-images
+{
+    width: 100%;
+    display: flex;
+    margin: 20px 0px;
+    overflow: hidden;
+}
+.m-images img
+{
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    transition: .4s ease-in-out;
+}
+
+.m-images img:hover
+{
+    transform: scale(1.5);
+}
+
+footer
+{
+    width: 100%;
+    height: 50%;
+    background: black;
+    padding: 20px 20px;
+}
+footer h2
+{
+    color: white;
+    font-family: cursive;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
